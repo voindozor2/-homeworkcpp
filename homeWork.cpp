@@ -181,6 +181,20 @@ public:
         tail--;
         return result;
     }
+
+    //При присваивании элемента по индексу считаем что head и tail не будут сдвигаться, так как логика не будет линейной
+    void push_to_index(int index, int value)
+    {
+        start_array_mem[index] = value;
+    }
+
+    //При удалении (зануление элемента массива) элемента по индексу считаем что head и tail не будут сдвигаться, так как логика не будет линейной
+    int pop_from_index(int index)
+    {
+        int result = start_array_mem[index];
+        start_array_mem[index] = 0;
+        return result;
+    }
 };
 
 int main(int argc, char* argv[])
@@ -247,6 +261,18 @@ int main(int argc, char* argv[])
     test6.push_to_tail(20);
     test6.print_array_with_capacity();
 
+    std::cout << "Начало проверки присвоения значения по индексу и удаления" << std::endl;
 
+    Vector test7(5);
+    std::cout << "test7 ";
+    test7.push_to_index(0,1);
+    test7.push_to_index(2,2);
+    test7.push_to_index(4,3);
+    test7.print_array_with_capacity();
+
+    std::cout << "test7 ";
+    int pop_from_index = test7.pop_from_index(4);
+    test7.print_array_with_capacity();
+    std::cout << "pop from index 4: " << pop_from_index << std::endl;
     return 0;
 }
