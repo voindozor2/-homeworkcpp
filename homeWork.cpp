@@ -27,7 +27,7 @@ public:
     {
         return max_size;
     }
-    
+
     Vector(int initialSize)
     {
         max_size = initialSize * coef;
@@ -75,18 +75,41 @@ public:
 
     void allocate_new_array()
     {
-        max_size = max_size * coef;
-        int* new_start_array_mem = new int[max_size];
-        int* new_head = new_start_array_mem + (head - start_array_mem);
-        int* new_tail = new_start_array_mem + (tail - start_array_mem);
-        for (int i = 0; i < start_array_mem - end_array_mem; i++)
+        int* new_start_array_mem = new int[max_size * coef];
+        int* new_head;
+        int* new_tail;
+
+        //Определяем куда будем класть head. Этот кейс ведет к тому что между tail и head вставятся новые ячейки
+        if (tail - start_array_mem < head - start_array_mem)
         {
-            new_start_array_mem[i] = start_array_mem[i];
+            for (int i = end_array_mem - head; i < max_size; i++)
+            {
+                new_start_array_mem[i + max_size * coef - max_size] = start_array_mem[i];
+            }
+            new_head = new_start_array_mem + max_size * coef - (head - end_array_mem);
+
+            for (int i = 0; i < tail - start_array_mem; i++)
+            {
+                new_start_array_mem[i] = start_array_mem[i];
+            }
+
+            new_tail = new_start_array_mem + (tail - start_array_mem);
+        }
+        //Этот кейс ведет к тому что между tail и end_array_mem вставятся новые ячейки
+        else
+        {
+            for (int i = 0; i < end_array_mem - start_array_mem; i++)
+            {
+                new_start_array_mem[i] = start_array_mem[i];
+            }
+            new_head = head;
+            new_tail = new_start_array_mem + (tail - start_array_mem);
         }
 
+        max_size = max_size * coef;
         delete[] start_array_mem;
         start_array_mem = new_start_array_mem;
-        end_array_mem = start_array_mem;
+        end_array_mem = start_array_mem + max_size;
         head = new_head;
         tail = new_tail;
     }
@@ -162,24 +185,24 @@ public:
 
 int main(int argc, char* argv[])
 {
-    //Проверка оператора присваивания
+    std::cout << "Проверка оператора присваивания" << std::endl;
     Vector test1(10);
     Vector test2(10);
+    std::cout << "test1 ";
     test1.push_to_tail(1);
     test1.push_to_tail(2);
     test1.push_to_tail(3);
     test2.push_to_tail(5);
     test2.push_to_tail(6);
     test2.push_to_tail(7);
-    std::cout << "test1 ";
     test1.print_array();
 
     test2 = test1;
 
     std::cout << "test2 ";
     test2.print_array();
-    //Окончание проверки оператора присваивания
-    //Начало проверки переполнения массива методов push_to_head_v2
+    std::cout << "Окончание проверки оператора присваивания" << std::endl;
+    std::cout << "Начало проверки переполнения массива методов push_to_head_v2" << std::endl;
     Vector test3(5);
     test3.push_to_head_v2(1);
     test3.push_to_head_v2(2);
@@ -187,8 +210,9 @@ int main(int argc, char* argv[])
     test3.push_to_head_v2(4);
     test3.push_to_head_v2(5);
     test3.print_array_with_capacity();
-    //Начало проверки переполнения массива методов push_to_tail
+    std::cout << "Начало проверки переполнения массива методов push_to_tail" << std::endl;
     Vector test4(5);
+    std::cout << "test4 ";
     test4.push_to_tail(6);
     test4.push_to_tail(7);
     test4.push_to_tail(8);
@@ -196,7 +220,33 @@ int main(int argc, char* argv[])
     test4.push_to_tail(10);
     test4.print_array_with_capacity();
 
+    std::cout << "Начало проверки переполнения массива методов push_to_head_v2 и push_to_tail" << std::endl;
 
-    
+    Vector test6(5);
+    std::cout << "test6 ";
+    test6.push_to_head_v2(1);
+    test6.push_to_head_v2(2);
+    test6.push_to_head_v2(3);
+    test6.push_to_head_v2(4);
+    test6.push_to_head_v2(5);
+    test6.print_array_with_capacity();
+
+    std::cout << "test6 ";
+    test6.push_to_tail(6);
+    test6.push_to_tail(7);
+    test6.push_to_tail(8);
+    test6.push_to_tail(9);
+    test6.push_to_tail(10);
+    test6.print_array_with_capacity();
+
+    std::cout << "test6 ";
+    test6.push_to_tail(16);
+    test6.push_to_tail(17);
+    test6.push_to_tail(18);
+    test6.push_to_tail(19);
+    test6.push_to_tail(20);
+    test6.print_array_with_capacity();
+
+
     return 0;
 }
