@@ -9,8 +9,6 @@ private:
     int* tail;
     const int coef = 2;
     int max_size;
-    int* start_array_mem;
-    int* end_array_mem;
 
 public:
     int* get_head()
@@ -31,16 +29,13 @@ public:
     Vector(int initialSize)
     {
         max_size = initialSize * coef;
-        start_array_mem = new int[max_size];
-        end_array_mem = start_array_mem + max_size;
-        head = start_array_mem;
+        head = new int[max_size];
         tail = head;
     }
 
     ~Vector()
     {
-        delete[] start_array_mem;
-        //Чтобы освободить память от массива, здесь нужно указать указатель на первый элемент массива
+        delete[] head;
     }
 
     Vector& operator=(const Vector& from)
@@ -48,7 +43,6 @@ public:
         for (int i = 0; i < from.tail - from.head; i++)
         {
             push_to_tail(from.head[i]);
-            //Тут есть вопрос - почему нет доступа до методов объекта куда копируем
         }
         return *this;
     }
@@ -56,12 +50,6 @@ public:
     int size()
     {
         return tail - head;
-    }
-
-    void push_to_head_v1(int value)
-    {
-        shift_array(1);
-        head[0] = value;
     }
 
     void shift_array(int numberOfElements)
@@ -73,13 +61,149 @@ public:
         tail += numberOfElements;
     }
 
+    void shift_array_from_index(int numberOfElements, int index)
+    {
+        for (int i = size() - 1; i >= index; i--)
+        {
+            head[i + numberOfElements] = head[i];
+        }
+        tail += numberOfElements;
+    }
+
+    void shift_array_from_index_reverse(int numberOfElements, int index)
+    {
+        for (int i = index; i < size(); i++)
+        {
+            head[i] = head[i + numberOfElements];
+        }
+        tail -= numberOfElements;
+    }
+
+    void allocate_new_array()
+    {
+        int* new_head = new int[max_size * coef];
+        int* new_tail = new_head + size();
+
+        for (int i = 0; i < size(); i++)
+        {
+            new_head[i] = head[i];
+        }
+
+        max_size = max_size * coef;
+        delete[] head;
+        head = new_head;
+        tail = new_tail;
+    }
+
+
+    void push_to_tail(int value)
+    {
+        if (size() + 1 > max_size)
+        {
+            allocate_new_array();
+        }
+        head[size()] = value;
+        tail += 1;
+    }
+
+    void delete_back()
+    {
+        tail -= 1;
+    }
+
+    void print_array()
+    {
+        std::cout << "Array Elements: ";
+        for (int i = 0; i < size(); i++)
+            std::cout << head[i] << " ";
+        std::cout << std::endl;
+    }
+
+    void print_array_to_max_size()
+    {
+        std::cout << "Array Elements: ";
+        for (int i = 0; i < max_size; i++)
+            std::cout << head[i] << " ";
+        std::cout << std::endl;
+    }
+
+    int pop_from_tail()
+    {
+        int result = head[tail - head];
+        tail--;
+        return result;
+    }
+
+    void push_to_index(int index, int value)
+    {
+        shift_array_from_index(1, index);
+        head[index] = value;
+    }
+
+    int pop_from_index(int index)
+    {
+        int result = head[index];
+        shift_array_from_index_reverse(1, index);
+        return result;
+    }
+};
+
+
+class queue
+{
+private:
+    int* head;
+    int* tail;
+    const int coef = 2;
+    int max_size;
+    int* start_array_mem;
+    int* end_array_mem;
+
+public:
+    int* get_head()
+    {
+        return head;
+    }
+
+    int* get_tail()
+    {
+        return tail;
+    }
+
+    int get_max_size()
+    {
+        return max_size;
+    }
+
+    queue(int initialSize)
+    {
+        max_size = initialSize * coef;
+        start_array_mem = new int[max_size];
+        end_array_mem = start_array_mem + max_size;
+        head = start_array_mem;
+        tail = head;
+    }
+
+    ~queue()
+    {
+        delete[] start_array_mem;
+    }
+
+    queue& operator=(const queue& from)
+    {
+        for (int i = 0; i < from.tail - from.head; i++)
+        {
+            push_to_tail(from.head[i]);
+        }
+        return *this;
+    }
+
     void allocate_new_array()
     {
         int* new_start_array_mem = new int[max_size * coef];
         int* new_head;
         int* new_tail;
 
-        //Определяем куда будем класть head. Этот кейс ведет к тому что между tail и head вставятся новые ячейки
         if (tail - start_array_mem < head - start_array_mem)
         {
             for (int i = end_array_mem - head; i < max_size; i++)
@@ -95,7 +219,6 @@ public:
 
             new_tail = new_start_array_mem + (tail - start_array_mem);
         }
-        //Этот кейс ведет к тому что между tail и end_array_mem вставятся новые ячейки
         else
         {
             for (int i = 0; i < end_array_mem - start_array_mem; i++)
@@ -114,7 +237,7 @@ public:
         tail = new_tail;
     }
 
-    void push_to_head_v2(int value)
+    void push_to_head(int value)
     {
         if (head - 1 == tail)
         {
@@ -143,19 +266,6 @@ public:
         tail += 1;
     }
 
-    void delete_back()
-    {
-        tail -= 1;
-    }
-
-    void print_array()
-    {
-        std::cout << "Array Elements: ";
-        for (int* i = head; i < tail; i++)
-            std::cout << *i << " ";
-        std::cout << std::endl;
-    }
-
     void print_array_with_capacity()
     {
         std::cout << "Array Elements: ";
@@ -181,20 +291,6 @@ public:
         tail--;
         return result;
     }
-
-    //При присваивании элемента по индексу считаем что head и tail не будут сдвигаться, так как логика не будет линейной
-    void push_to_index(int index, int value)
-    {
-        start_array_mem[index] = value;
-    }
-
-    //При удалении (зануление элемента массива) элемента по индексу считаем что head и tail не будут сдвигаться, так как логика не будет линейной
-    int pop_from_index(int index)
-    {
-        int result = start_array_mem[index];
-        start_array_mem[index] = 0;
-        return result;
-    }
 };
 
 int main(int argc, char* argv[])
@@ -216,63 +312,51 @@ int main(int argc, char* argv[])
     std::cout << "test2 ";
     test2.print_array();
     std::cout << "Окончание проверки оператора присваивания" << std::endl;
-    std::cout << "Начало проверки переполнения массива методов push_to_head_v2" << std::endl;
+
+    std::cout << "Проверка переполнения массива и реалокации" << std::endl;
     Vector test3(5);
-    test3.push_to_head_v2(1);
-    test3.push_to_head_v2(2);
-    test3.push_to_head_v2(3);
-    test3.push_to_head_v2(4);
-    test3.push_to_head_v2(5);
-    test3.print_array_with_capacity();
-    std::cout << "Начало проверки переполнения массива методов push_to_tail" << std::endl;
-    Vector test4(5);
+    std::cout << "test3 ";
+    test3.push_to_tail(1);
+    test3.push_to_tail(2);
+    test3.push_to_tail(3);
+    test3.push_to_tail(4);
+    test3.push_to_tail(5);
+    test3.push_to_tail(6);
+    test3.push_to_tail(7);
+    test3.push_to_tail(8);
+    test3.push_to_tail(9);
+    test3.push_to_tail(10);
+    test3.print_array_to_max_size();
+    test3.push_to_tail(11);
+    test3.print_array_to_max_size();
+    std::cout << "Окончание проверки переполнения массива и реалокации" << std::endl;
+
+    std::cout << "Проверка удаления из конца" << std::endl;
+    test3.pop_from_tail();
+    test3.pop_from_tail();
+    test3.pop_from_tail();
+    test3.print_array();
+    std::cout << "Окончание проверки удаления из конца" << std::endl;
+
+    std::cout << "Проверка вставки по индексу" << std::endl;
     std::cout << "test4 ";
-    test4.push_to_tail(6);
-    test4.push_to_tail(7);
-    test4.push_to_tail(8);
-    test4.push_to_tail(9);
-    test4.push_to_tail(10);
-    test4.print_array_with_capacity();
+    Vector test4(5);
+    test4.push_to_tail(1);
+    test4.push_to_tail(2);
+    test4.push_to_tail(3);
+    test4.push_to_index(1, 222);
+    test4.push_to_index(3, 333);
+    test4.print_array();
+    std::cout << "Окончание проверки вставки по индексу" << std::endl;
 
-    std::cout << "Начало проверки переполнения массива методов push_to_head_v2 и push_to_tail" << std::endl;
-
-    Vector test6(5);
-    std::cout << "test6 ";
-    test6.push_to_head_v2(1);
-    test6.push_to_head_v2(2);
-    test6.push_to_head_v2(3);
-    test6.push_to_head_v2(4);
-    test6.push_to_head_v2(5);
-    test6.print_array_with_capacity();
-
-    std::cout << "test6 ";
-    test6.push_to_tail(6);
-    test6.push_to_tail(7);
-    test6.push_to_tail(8);
-    test6.push_to_tail(9);
-    test6.push_to_tail(10);
-    test6.print_array_with_capacity();
-
-    std::cout << "test6 ";
-    test6.push_to_tail(16);
-    test6.push_to_tail(17);
-    test6.push_to_tail(18);
-    test6.push_to_tail(19);
-    test6.push_to_tail(20);
-    test6.print_array_with_capacity();
-
-    std::cout << "Начало проверки присвоения значения по индексу и удаления" << std::endl;
-
-    Vector test7(5);
-    std::cout << "test7 ";
-    test7.push_to_index(0,1);
-    test7.push_to_index(2,2);
-    test7.push_to_index(4,3);
-    test7.print_array_with_capacity();
-
-    std::cout << "test7 ";
-    int pop_from_index = test7.pop_from_index(4);
-    test7.print_array_with_capacity();
-    std::cout << "pop from index 4: " << pop_from_index << std::endl;
+    std::cout << "Проверка удаления по индексу" << std::endl;
+    std::cout << "test5 ";
+    Vector test5(5);
+    test5.push_to_tail(1);
+    test5.push_to_tail(2);
+    test5.push_to_tail(3);
+    test5.pop_from_index(1);
+    test5.print_array();
+    std::cout << "Окончание проверки удаления по индексу" << std::endl;
     return 0;
 }
