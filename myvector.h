@@ -9,19 +9,11 @@ private:
     int max_size;
 
 public:
-    int* get_head()
+    vector()
     {
-        return head;
-    }
-
-    int* get_tail()
-    {
-        return tail;
-    }
-
-    int get_max_size()
-    {
-        return max_size;
+        max_size = 10;
+        head = new int[max_size];
+        tail = head;
     }
 
     vector(int initialSize)
@@ -38,9 +30,11 @@ public:
 
     vector& operator=(const vector& from)
     {
+        tail = head;
         for (int i = 0; i < from.tail - from.head; i++)
         {
-            push_to_tail(from.head[i]);
+            head[i] = from.head[i];
+            tail++;
         }
         return *this;
     }
