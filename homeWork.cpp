@@ -52,15 +52,6 @@ public:
         return tail - head;
     }
 
-    void shift_array(int numberOfElements)
-    {
-        for (int i = size() - 1; i >= 0; i--)
-        {
-            head[i + numberOfElements] = head[i];
-        }
-        tail += numberOfElements;
-    }
-
     void shift_array_from_index(int numberOfElements, int index)
     {
         for (int i = size() - 1; i >= index; i--)
