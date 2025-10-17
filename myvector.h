@@ -30,11 +30,14 @@ public:
 
     vector& operator=(const vector& from)
     {
-        tail = head;
-        for (int i = 0; i < from.tail - from.head; i++)
+        if (this != &from)
         {
-            head[i] = from.head[i];
-            tail++;
+            tail = head;
+            for (int i = 0; i < from.tail - from.head; i++)
+            {
+                head[i] = from.head[i];
+                tail++;
+            }
         }
         return *this;
     }
