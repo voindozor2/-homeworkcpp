@@ -155,8 +155,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="homeWork.cpp" />
+    <ClCompile Include="myvector.cpp" />
     <ClCompile Include="queue.cpp" />
-    <ClCompile Include="vector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="myvector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
