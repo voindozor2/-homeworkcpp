@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <immintrin.h>
 #include <iostream>
 
 class Vector
