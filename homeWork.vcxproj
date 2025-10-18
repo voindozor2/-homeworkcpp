@@ -159,6 +159,13 @@
     <ClCompile Include="queue.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="leet_code\check_if_two_string_arrays_are_equivalent.h" />
+    <ClInclude Include="leet_code\concatenation_of_array.h" />
+    <ClInclude Include="leet_code\count_pairs_whose_sum_is_less_than_target.h" />
+    <ClInclude Include="leet_code\Intersection_of_two_arrays.h" />
+    <ClInclude Include="leet_code\richest_customer_wealth.h" />
+    <ClInclude Include="leet_code\shuffle_the_array.h" />
+    <ClInclude Include="leet_code\smallest_index_with_equal_value.h" />
     <ClInclude Include="myvector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
