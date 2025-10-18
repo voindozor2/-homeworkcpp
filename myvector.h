@@ -16,6 +16,19 @@ public:
         tail = head;
     }
 
+    vector(int arr[],int size)
+    {
+        max_size = size * coef;
+        head = new int[max_size];
+        tail = head;
+
+        for(int i = 0; i < size; i++)
+        {
+            head[i] = arr[i];
+            tail++;
+        }
+    }
+
     vector(int initialSize)
     {
         max_size = initialSize * coef;
@@ -40,6 +53,23 @@ public:
             }
         }
         return *this;
+    }
+
+    bool operator==(const vector& another)
+    {
+        if (tail - head != another.tail - another.head)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < size(); i++)
+        {
+            if (head[i] != another.head[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     int size()
@@ -131,5 +161,15 @@ public:
         int result = head[index];
         shift_array_from_index_reverse(1, index);
         return result;
+    }
+
+    int get_max_size()
+    {
+        return max_size;
+    }
+
+    int at(int index)
+    {
+        return head[index];
     }
 };
