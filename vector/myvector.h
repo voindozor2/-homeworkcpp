@@ -14,12 +14,16 @@ public:
     vector(int arr[],int size);
 
     vector(int initialSize);
+    
+    vector(const vector& source);
 
     ~vector();
 
     vector& operator=(const vector& from);
 
     bool operator==(const vector& another) const;
+
+    int& operator[](int index);
 
     int size() const;
 
@@ -43,7 +47,9 @@ public:
 
     int pop_from_index(int index);
 
-    int get_max_size() const;
+    const int get_max_size() const;
 
     int at(int index) const;
+
+    int get_coef() const;
 };
