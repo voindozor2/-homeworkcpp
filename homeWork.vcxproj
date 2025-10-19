@@ -233,6 +233,7 @@
       <LinkCompiled>true</LinkCompiled>
       <AdditionalIncludeDirectories>;C:\Users\Boris.DESKTOP-L651092\IdeaProjects\vcpkg\installed\x64-windows\include</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="tests\tests.cpp" />
     <ClCompile Include="vector\myvector.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -326,6 +327,7 @@
     <ClInclude Include="leet_code\smallest_index_with_equal_value\smallest_index_with_equal_value.cpp" />
     <ClInclude Include="leet_code\smallest_index_with_equal_value\smallest_index_with_equal_value.h" />
     <ClInclude Include="queue\queue.h" />
+    <ClInclude Include="tests\tests.h" />
     <ClInclude Include="vector\myvector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
