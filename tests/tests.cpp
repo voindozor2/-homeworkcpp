@@ -1,6 +1,4 @@
 ﻿#include "tests.h"
-
-#pragma once
 #include "../vector/myvector.h"
 #include <cassert>
 
