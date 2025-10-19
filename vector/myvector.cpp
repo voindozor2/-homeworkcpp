@@ -46,7 +46,7 @@
         return *this;
     }
 
-    bool vector::operator==(const vector& another)
+    bool vector::operator==(const vector& another) const
     {
         if (tail - head != another.tail - another.head)
         {

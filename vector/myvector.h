@@ -19,7 +19,7 @@ public:
 
     vector& operator=(const vector& from);
 
-    bool operator==(const vector& another);
+    bool operator==(const vector& another) const;
 
     int size() const;
 
