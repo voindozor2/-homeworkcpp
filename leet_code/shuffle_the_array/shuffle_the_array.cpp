@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <vector>
+#include "shuffle_the_array.h"
 
 //https://leetcode.com/problems/shuffle-the-array/
 
@@ -30,14 +31,13 @@
 //nums.length == 2n
 //1 <= nums[i] <= 10^3
 
-class Solution {
-public:
-    std::vector<int> shuffle(std::vector<int>& nums, int n) {
-        std::vector<int> myVector;
-        for(int i = 0; i < n ; i++){
-            myVector.push_back(nums.at(i));
-            myVector.push_back(nums.at(i+n));
-        }
-        return myVector;
+std::vector<int> Solution::shuffle(std::vector<int>& nums, int n)
+{
+    std::vector<int> myVector;
+    for (int i = 0; i < n; i++)
+    {
+        myVector.push_back(nums.at(i));
+        myVector.push_back(nums.at(i + n));
     }
-};
+    return myVector;
+}

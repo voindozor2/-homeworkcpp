@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <vector>
+#include "smallest_index_with_equal_value.h"
 
 //https://leetcode.com/problems/smallest-index-with-equal-value
 
@@ -47,14 +48,14 @@
 //1 <= nums.length <= 100
 //0 <= nums[i] <= 9
 
-class Solution {
-public:
-    int smallestEqual(std::vector<int>& nums) {
-        for(int i = 0; i < nums.size(); i++){
-            if(i % 10 == nums[i]){
-                return i;
-            }
+int Solution::smallestEqual(std::vector<int>& nums)
+{
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (i % 10 == nums[i])
+        {
+            return i;
         }
-        return -1;
     }
-};
+    return -1;
+}

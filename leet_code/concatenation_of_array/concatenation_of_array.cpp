@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#include "concatenation_of_array.h"
+#pragma once
 #include <vector>
 
 //https://leetcode.com/problems/concatenation-of-array/
@@ -33,13 +34,12 @@
 //1 <= n <= 1000
 //1 <= nums[i] <= 1000
 
-class Solution {
-public:
-    std::vector<int> getConcatenation(std::vector<int>& nums) {
-        std::vector<int> myVector(nums);
-        for(int i=0; i < nums.size();i++){
-            myVector.push_back(nums.at(i));
-        }
-        return myVector;
+std::vector<int> Solution::getConcatenation(std::vector<int>& nums)
+{
+    std::vector<int> myVector(nums);
+    for (int i = 0; i < nums.size(); i++)
+    {
+        myVector.push_back(nums.at(i));
     }
-};
+    return myVector;
+}

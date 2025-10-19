@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <vector>
+#include "count_pairs_whose_sum_is_less_than_target.h"
 
 //https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
@@ -38,19 +39,21 @@
 //-50 <= nums[i], target <= 50
 
 
-class Solution {
-public:
-    int countPairs(std::vector<int>& nums, int target) {
-        int count = 0;
-        for(int i = 0; i < nums.size(); i++){
-            for(int j = 0; j < nums.size(); j++){
-                if(i < j){
-                    if(nums[i] + nums[j] < target){
-                        count++;
-                    }
+int Solution::countPairs(std::vector<int>& nums, int target)
+{
+    int count = 0;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        for (int j = 0; j < nums.size(); j++)
+        {
+            if (i < j)
+            {
+                if (nums[i] + nums[j] < target)
+                {
+                    count++;
                 }
             }
         }
-        return count;
     }
-};
+    return count;
+}

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <set>
 #include <vector>
+#include "Intersection_of_two_arrays.h"
 
 //https://leetcode.com/problems/intersection-of-two-arrays/
 
@@ -30,22 +31,24 @@
 //1 <= nums1.length, nums2.length <= 1000
 //0 <= nums1[i], nums2[i] <= 1000
 
-class Solution {
-public:
-    std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2) {
-        std::set<int> uniqueInts;
-        for(int i = 0; i < nums1.size(); i++){
-            for(int j = 0; j < nums2.size(); j++){
-                if(nums1[i] == nums2[j]){
-                    uniqueInts.insert(nums1[i]);
-                }
+std::vector<int> Solution::intersection(std::vector<int>& nums1, std::vector<int>& nums2)
+{
+    std::set<int> uniqueInts;
+    for (int i = 0; i < nums1.size(); i++)
+    {
+        for (int j = 0; j < nums2.size(); j++)
+        {
+            if (nums1[i] == nums2[j])
+            {
+                uniqueInts.insert(nums1[i]);
             }
         }
-        std::vector<int> myVector;
-        for(int key: uniqueInts){
-            myVector.push_back(key);
-        }
-
-        return myVector;
     }
-};
+    std::vector<int> myVector;
+    for (int key : uniqueInts)
+    {
+        myVector.push_back(key);
+    }
+
+    return myVector;
+}
