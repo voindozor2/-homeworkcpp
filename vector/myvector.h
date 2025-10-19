@@ -25,7 +25,7 @@ public:
 
     int& operator[](int index);
 
-    int size() const;
+    size_t size() const;
 
     void shift_array_from_index(int numberOfElements, int index);
 

@@ -80,7 +80,7 @@ int& vector::operator[](int index)
     return head[index];
 }
 
-int vector::size() const
+size_t vector::size() const
 {
     return tail - head;
 }
