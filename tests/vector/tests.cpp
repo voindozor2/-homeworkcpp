@@ -1,5 +1,5 @@
 ﻿#include "tests.h"
-#include "../vector/myvector.h"
+#include "../../vector/myvector.h"
 #include <cassert>
 
 void push_ten_elements_max_size_is_not_twenty_test()
