@@ -237,6 +237,7 @@
     </ClCompile>
     <ClCompile Include="string\string.cpp" />
     <ClCompile Include="tests\big_integer\big_integer_tests.cpp" />
+    <ClCompile Include="tests\complex\complex_tests.cpp" />
     <ClCompile Include="tests\string\string_tests.cpp" />
     <ClCompile Include="tests\vector\tests.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -412,6 +413,7 @@
     <ClInclude Include="queue\queue.h" />
     <ClInclude Include="string\string.h" />
     <ClInclude Include="tests\big_integer\big_integer_tests.h" />
+    <ClInclude Include="tests\complex\complex_tests.h" />
     <ClInclude Include="tests\string\string_tests.h" />
     <ClInclude Include="tests\vector\tests.h" />
     <ClInclude Include="vector\myvector.h" />

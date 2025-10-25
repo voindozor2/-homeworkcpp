@@ -1,6 +1,8 @@
 ﻿#include "complex.h"
 
 #include <cmath>
+#include <ostream>
+#include <string>
 
 complex::complex()
 {
@@ -8,7 +10,7 @@ complex::complex()
     imag = 0;
 }
 
-complex::complex(int realInitialize, int imagInitialize)
+complex::complex(double realInitialize, double imagInitialize)
 {
     real = realInitialize;
     imag = imagInitialize;
@@ -36,8 +38,10 @@ complex complex::operator-(const complex& other)
 
 complex complex::operator*(const complex& other)
 {
-    real = real * other.real - imag * other.imag;
-    imag = real * other.imag + imag * other.real;
+    double new_real = real * other.real - imag * other.imag;
+    double new_imag = real * other.imag + imag * other.real;
+    real = new_real;
+    imag = new_imag;
     return *this;
 }
 
@@ -45,8 +49,10 @@ complex complex::operator/(const complex& other)
 {
     double denominator = other.real * other.real + other.imag * other.imag; // c² + d²
 
-    real = (real * other.real + imag * other.imag) / denominator;
-    imag = (imag * other.real - real * other.imag) / denominator;
+    double new_real = (real * other.real + imag * other.imag) / denominator;
+    double new_imag = (imag * other.real - real * other.imag) / denominator;
+    real = new_real;
+    imag = new_imag;
     return *this;
 }
 
@@ -74,7 +80,7 @@ complex& complex::operator/=(const complex& other)
     return *this;
 }
 
-bool complex::operator==(const complex& other) //нагуглил
+bool complex::operator==(const complex& other) const//нагуглил
 {
     const double epsilon = 1e-12;
     
@@ -84,7 +90,7 @@ bool complex::operator==(const complex& other) //нагуглил
     return real_equal && imag_equal;
 }
 
-bool complex::operator!=(const complex& other)
+bool complex::operator!=(const complex& other) const
 {
     const double epsilon = 1e-12;
     
@@ -94,7 +100,7 @@ bool complex::operator!=(const complex& other)
     return real_equal && imag_equal;
 }
 
-bool complex::operator<(const complex& other)
+bool complex::operator<(const complex& other) const
 {
     const double epsilon = 1e-12;
     
@@ -106,7 +112,7 @@ bool complex::operator<(const complex& other)
     return imag < other.imag;
 }
 
-bool complex::operator>(const complex& other)
+bool complex::operator>(const complex& other) const
 {
     const double epsilon = 1e-12;
     
@@ -118,7 +124,7 @@ bool complex::operator>(const complex& other)
     return imag > other.imag;
 }
 
-bool complex::operator<=(const complex& other)
+bool complex::operator<=(const complex& other) const
 {
     const double epsilon = 1e-12;
     
@@ -133,7 +139,7 @@ bool complex::operator<=(const complex& other)
     }
 }
 
-bool complex::operator>=(const complex& other)
+bool complex::operator>=(const complex& other) const
 {
     const double epsilon = 1e-12;
     
@@ -150,12 +156,7 @@ bool complex::operator>=(const complex& other)
 
 std::string complex::toString() const
 {
-    std::string str;
-    str += real;
-    str += " + ";
-    str += imag;
-    str += " * i";
-    return str;
+    return std::string(std::to_string(real) + " + " + std::to_string(imag) + " * i");
 }
 
 complex::operator int() const
@@ -163,9 +164,21 @@ complex::operator int() const
     return static_cast<int>(real);
 }
 
+double complex::get_real() const
+{
+    return real;
+}
+
+double complex::get_imag() const
+{
+    return imag;
+}
+
 
 std::ostream& operator<<(std::ostream& os, const complex& other)
 {
-    os << other.toString();
+    std::string stringToOut = other.toString();
+    os << stringToOut;
+    return os;
 }
 

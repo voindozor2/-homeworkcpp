@@ -1,0 +1,21 @@
+﻿#pragma once
+
+void constructor_complex_test();
+void constructor_copy_complex_test();
+void operator_plus_complex_test();
+void operator_minus_complex_test();
+void operator_multiply_complex_test();
+void operator_division_complex_test();
+void operator_plus_equal_complex_test();
+void operator_minus_equal_complex_test();
+void operator_multiply_equal_complex_test();
+void operator_division_equal_complex_test();
+void operator_equals_complex_test();
+void operator_not_equals_complex_test();
+void operator_less_complex_test();
+void operator_more_complex_test();
+void operator_less_equal_complex_test();
+void to_string_complex_test();
+void operator_int_complex_test();
+void operator_out_complex_test();
+void run_complex_tests();
