@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="big_integer\big_integer.cpp" />
+    <ClCompile Include="complex\complex.cpp" />
     <ClCompile Include="homeWork.cpp" />
     <ClCompile Include="leet_code\concatenation_of_array\concatenation_of_array.cpp" />
     <ClCompile Include="queue\queue.cpp">
@@ -394,6 +395,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="big_integer\big_integer.h" />
+    <ClInclude Include="complex\complex.h" />
     <ClInclude Include="leet_code\check_if_two_string_arrays_are_equivalent\check_if_two_string_arrays_are_equivalent.cpp" />
     <ClInclude Include="leet_code\check_if_two_string_arrays_are_equivalent\check_if_two_string_arrays_are_equivalent.h" />
     <ClInclude Include="leet_code\concatenation_of_array\concatenation_of_array.h" />
