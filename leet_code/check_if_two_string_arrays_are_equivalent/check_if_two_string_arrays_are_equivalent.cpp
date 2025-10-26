@@ -45,18 +45,28 @@
 
 bool Solution::arrayStringsAreEqual(std::vector<std::string>& word1, std::vector<std::string>& word2)
 {
-    std::string string_word1 = "";
-    std::string string_word2 = "";
+    size_t word1_counter = 0;
+        size_t word2_counter = 0;
+        size_t word1_char_counter = 0;
+        size_t word2_char_counter = 0;
 
-    for (int i = 0; i < word1.size(); i++)
-    {
-        string_word1 += word1[i];
-    }
+        while (word1_counter < word1.size() && word2_counter < word2.size()) {
+            if (word1[word1_counter][word1_char_counter] != word2[word2_counter][word2_char_counter]) {
+                return false;
+            }
 
-    for (int j = 0; j < word2.size(); j++)
-    {
-        string_word2 += word2[j];
-    }
+            word1_char_counter++;
+            if (word1_char_counter == word1[word1_counter].size()) {
+                word1_counter++;
+                word1_char_counter = 0;
+            }
 
-    return string_word1 == string_word2;
+            word2_char_counter++;
+            if (word2_char_counter == word2[word2_counter].size()) {
+                word2_counter++;
+                word2_char_counter = 0;
+            }
+        }
+
+        return true;
 }
