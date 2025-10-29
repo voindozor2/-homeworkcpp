@@ -164,6 +164,22 @@ void operator_not_equals_big_integer_test()
     std::cout << "operator_not_equals_big_integer_test is OK" << std::endl;
 }
 
+void operator_plus_left_arg_int_test()
+{
+    big_integer biginteger(120);
+    biginteger = 50 + biginteger;
+    assert(biginteger.get() == "170");
+    std::cout << "operator_plus_int_big_integer_test is OK" << std::endl;
+}
+
+void operator_minus_left_arg_int_test()
+{
+    big_integer biginteger(120);
+    biginteger = 50 - biginteger;
+    assert(biginteger.get() == "-70");
+    std::cout << "operator_minus_left_arg_int_test is OK" << std::endl;
+}
+
 void run_big_integer_tests()
 {
     constructor_with_value_big_integer_test();

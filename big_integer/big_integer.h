@@ -31,5 +31,7 @@ public:
     big_integer operator-(const int other);
     bool operator==(const big_integer& other) const;
     bool operator!=(const big_integer& other) const;
+    friend big_integer operator+(int left, const big_integer& right);
+    friend big_integer operator-(int left, const big_integer& right);
     std::string get() const;
 };

@@ -168,7 +168,7 @@ big_integer& big_integer::operator+=(const int other)
 
 big_integer& big_integer::operator-=(const big_integer& other)
 {
-    *this =*this - other;
+    *this = *this - other;
     return *this;
 }
 
@@ -257,11 +257,11 @@ bool big_integer::operator!=(const big_integer& other) const
 
 std::string big_integer::get() const
 {
-    std::string string;
-
+    std::string string(bits_size, bytes[0] + '0');
+    
     for (size_t i = 0; i < bits_size; i++)
     {
-        string += static_cast<unsigned char>(bytes[i]) + '0';
+        string[i] = static_cast<unsigned char>(bytes[i]) + '0';
     }
     string.erase(0, string.find_first_not_of('0'));
     if (sig == false)
@@ -269,4 +269,16 @@ std::string big_integer::get() const
         string = '-' + string;
     }
     return string;
+}
+
+big_integer operator+(int left, const big_integer& right)
+{
+    big_integer temp(left);
+    return temp += right;
+}
+
+big_integer operator-(int left, const big_integer& right)
+{
+    big_integer temp(left);
+    return temp -= right;
 }
