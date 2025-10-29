@@ -2,21 +2,21 @@
 
 unsigned char* big_integer::plus(unsigned char* one, unsigned char* two, size_t bits_sizeFirst, size_t bits_sizeSecond)
 {
-    unsigned char perenos = 0;
+    unsigned char transfer = 0;
     int sizeSecond = bits_sizeSecond;
     for (size_t i = bits_sizeFirst; i > 0; i--)
     {
-        if (perenos == 1)
+        if (transfer == 1)
         {
-            one[i - 1] = one[i - 1] + perenos;
-            perenos = 0;
+            one[i - 1] = one[i - 1] + transfer;
+            transfer = 0;
         }
         if (sizeSecond > 0)
         {
             unsigned char temp = one[i - 1] + two[sizeSecond - 1];
             if (temp > divider)
             {
-                perenos = 1;
+                transfer = 1;
                 temp -= divider;
             }
             one[i - 1] = temp;
@@ -29,12 +29,11 @@ unsigned char* big_integer::plus(unsigned char* one, unsigned char* two, size_t 
 unsigned char* big_integer::minus(unsigned char* one, unsigned char* two, size_t bits_sizeFirst, size_t bits_sizeSecond,
                                   bool sigFirst, bool sigSecond)
 {
-    size_t raznica = bits_sizeFirst - bits_sizeSecond;
+    size_t diff = bits_sizeFirst - bits_sizeSecond;
     size_t sizeSecond = 0;
-    bool resultSig = true;
     for (size_t i = 0; i < bits_sizeFirst; i++)
     {
-        if (i >= raznica)
+        if (i >= diff)
         {
             if (sigFirst == true && sigSecond == true || sigFirst == false && sigSecond == false)
             {
@@ -44,7 +43,6 @@ unsigned char* big_integer::minus(unsigned char* one, unsigned char* two, size_t
                 }
                 else if (two[sizeSecond] > one[i])
                 {
-                    resultSig = false;
                     if (i != 0)
                     {
                         if (one[i - 1] != 0)
@@ -71,7 +69,6 @@ unsigned char* big_integer::minus(unsigned char* one, unsigned char* two, size_t
                     }
                     else
                     {
-                        resultSig = false;
                         one[i] = two[sizeSecond] - one[i];
                     }
                     one[i] = one[i] - two[sizeSecond];
@@ -83,7 +80,6 @@ unsigned char* big_integer::minus(unsigned char* one, unsigned char* two, size_t
             }
             else
             {
-                resultSig = false;
                 return plus(one, two, bits_sizeFirst, bits_sizeSecond);
             }
             sizeSecond++;
