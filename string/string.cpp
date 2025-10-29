@@ -104,7 +104,7 @@ string& string::operator=(const string& other)
     return *this;
 }
 
-bool string::operator==(const string& other)
+bool string::operator==(const string& other) const
 {
     bool equal = true;
     if (size() != other.size())
@@ -122,17 +122,9 @@ bool string::operator==(const string& other)
     return equal;
 }
 
-bool string::operator!=(const string& other)
+bool string::operator!=(const string& other) const
 {
-    bool equal = false;
-    for (int i = 0; i < size(); i++)
-    {
-        if (head[i] == other.head[i])
-        {
-            equal = true;
-        }
-    }
-    return equal;
+    return !(*this == other);
 }
 
 char string::operator[](int index) const
@@ -158,17 +150,17 @@ std::istream& operator>>(std::istream& in, string& str)
     return in;
 }
 
-const int string::get_max_size()
+const int string::get_max_size() const
 {
     return max_size;
 }
 
-const int string::get_coef()
+const int string::get_coef() const
 {
     return coef;
 }
 
-const int string::get_size()
+const int string::get_size() const
 {
     return size();
 }

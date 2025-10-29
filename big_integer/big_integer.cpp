@@ -256,19 +256,7 @@ bool big_integer::operator==(const big_integer& other) const
 
 bool big_integer::operator!=(const big_integer& other) const
 {
-    if (bits_size != other.bits_size)
-    {
-        return true;
-    }
-
-    for (size_t i = 0; i < bits_size; i++)
-    {
-        if (bytes[i] != other.bytes[i])
-        {
-            return true;
-        }
-    }
-    return false;
+    return !(*this == other);
 }
 
 std::string big_integer::get() const

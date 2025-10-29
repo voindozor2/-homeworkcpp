@@ -92,12 +92,7 @@ bool complex::operator==(const complex& other) const//нагуглил
 
 bool complex::operator!=(const complex& other) const
 {
-    const double epsilon = 1e-12;
-    
-    bool real_equal = std::fabs(real - other.real) >= epsilon; 
-    bool imag_equal = std::fabs(imag - other.imag) >= epsilon;
-    
-    return real_equal && imag_equal;
+    return !(*this == other);
 }
 
 bool complex::operator<(const complex& other) const
@@ -114,44 +109,17 @@ bool complex::operator<(const complex& other) const
 
 bool complex::operator>(const complex& other) const
 {
-    const double epsilon = 1e-12;
-    
-    bool real_equal = std::fabs(real - other.real) < epsilon;
-    if (!real_equal)
-    {
-        return real > other.real;
-    }
-    return imag > other.imag;
+    return !(*this < other);
 }
 
 bool complex::operator<=(const complex& other) const
 {
-    const double epsilon = 1e-12;
-    
-    bool real_equal = std::fabs(real - other.real) < epsilon;
-    if (!real_equal)
-    {
-        return real < other.real;
-    }
-    else
-    {
-        return true;
-    }
+    return *this < other || *this == other;
 }
 
 bool complex::operator>=(const complex& other) const
 {
-    const double epsilon = 1e-12;
-    
-    bool real_equal = std::fabs(real - other.real) >= epsilon;
-    if (!real_equal)
-    {
-        return real > other.real;
-    }
-    else
-    {
-        return true;
-    }
+    return *this > other || *this == other;
 }
 
 std::string complex::toString() const
