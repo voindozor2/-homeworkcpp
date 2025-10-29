@@ -21,15 +21,15 @@ public:
     big_integer& operator+=(const big_integer& other);
     big_integer& operator+=(const int other);
     big_integer& operator-=(const big_integer& other);
-    big_integer& operator++(); //++a
-    big_integer operator++(int); //a++
-    big_integer& operator--(); // --a
-    big_integer operator--(int); //a--
+    big_integer& operator++();
+    big_integer operator++(int); 
+    big_integer& operator--();
+    big_integer operator--(int); 
     big_integer operator+(const big_integer& other);
     big_integer operator+(const int other_big_int);
     big_integer operator-(const big_integer& other);
     big_integer operator-(const int other);
-    bool operator==(const big_integer& other);
-    bool operator!=(const big_integer& other);
+    bool operator==(const big_integer& other) const;
+    bool operator!=(const big_integer& other) const;
     std::string get() const;
 };

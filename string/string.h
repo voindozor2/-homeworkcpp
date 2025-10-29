@@ -21,12 +21,12 @@ public:
     string& operator+(const string& other);
     string& operator+(const char&);
     string& operator=(const string& other);
-    bool operator==(const string& other);
-    bool operator!=(const string& other);
+    bool operator==(const string& other) const;
+    bool operator!=(const string& other) const;
     char operator[](int index) const;
     friend std::istream& operator>>(std::istream& in, string& str);
     friend std::ostream& operator<<(std::ostream& os, const string& str);
-    const int get_max_size();
-    const int get_coef();
-    const int get_size();
+    const int get_max_size() const;
+    const int get_coef() const;
+    const int get_size() const;
 };

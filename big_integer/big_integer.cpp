@@ -237,7 +237,7 @@ big_integer big_integer::operator-(const int other)
     return *this;
 }
 
-bool big_integer::operator==(const big_integer& other)
+bool big_integer::operator==(const big_integer& other) const
 {
     if (bits_size != other.bits_size)
     {
@@ -254,7 +254,7 @@ bool big_integer::operator==(const big_integer& other)
     return true;
 }
 
-bool big_integer::operator!=(const big_integer& other)
+bool big_integer::operator!=(const big_integer& other) const
 {
     if (bits_size != other.bits_size)
     {
