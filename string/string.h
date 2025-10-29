@@ -24,6 +24,7 @@ public:
     bool operator==(const string& other) const;
     bool operator!=(const string& other) const;
     char operator[](int index) const;
+    char& operator[](int index);
     friend std::istream& operator>>(std::istream& in, string& str);
     friend std::ostream& operator<<(std::ostream& os, const string& str);
     const int get_max_size() const;

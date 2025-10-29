@@ -132,6 +132,11 @@ char string::operator[](int index) const
     return head[index];
 }
 
+char& string::operator[](int index)
+{
+    return head[index];
+}
+
 std::ostream& operator<<(std::ostream& out, const string& str)
 {
     for (char* i = str.head; i < str.head + str.size(); i++)

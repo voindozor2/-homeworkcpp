@@ -9,6 +9,7 @@ void operator_equating_test();
 void operator_equals_test();
 void operator_not_equals_test();
 void operator_brackets_string_test();
+void operator_brackets_with_ampersand_string_test();
 void operator_output_test();
 void operator_input_test();
 void run_string_tests();

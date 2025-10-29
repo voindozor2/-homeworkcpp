@@ -124,6 +124,18 @@ void operator_brackets_string_test()
     std::cout << "operator_brackets_string_test is OK" << std::endl;
 }
 
+void operator_brackets_with_ampersand_string_test()
+{
+    string test_str2("as", 2);
+    assert(test_str2[0] == 'a');
+    assert(test_str2[1] == 's');
+
+    test_str2[0] = 'l';
+    assert(test_str2[0] == 'l');
+    
+    std::cout << "operator_brackets_string_test is OK" << std::endl;
+}
+
 void operator_output_test()
 {
     string string1("Asdasd", 6);
