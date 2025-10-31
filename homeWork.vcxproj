@@ -156,6 +156,9 @@
   <ItemGroup>
     <ClCompile Include="big_integer\big_integer.cpp" />
     <ClCompile Include="complex\complex.cpp" />
+    <ClCompile Include="geometry\circle.cpp" />
+    <ClCompile Include="geometry\rectangle.cpp" />
+    <ClCompile Include="geometry\triangle.cpp" />
     <ClCompile Include="homeWork.cpp" />
     <ClCompile Include="leet_code\concatenation_of_array\concatenation_of_array.cpp" />
     <ClCompile Include="queue\queue.cpp">
@@ -238,6 +241,7 @@
     <ClCompile Include="string\string.cpp" />
     <ClCompile Include="tests\big_integer\big_integer_tests.cpp" />
     <ClCompile Include="tests\complex\complex_tests.cpp" />
+    <ClCompile Include="tests\geometry\circle_tests.cpp" />
     <ClCompile Include="tests\string\string_tests.cpp" />
     <ClCompile Include="tests\vector\tests.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -397,6 +401,10 @@
   <ItemGroup>
     <ClInclude Include="big_integer\big_integer.h" />
     <ClInclude Include="complex\complex.h" />
+    <ClInclude Include="geometry\circle.h" />
+    <ClInclude Include="geometry\rectangle.h" />
+    <ClInclude Include="geometry\shape.h" />
+    <ClInclude Include="geometry\triangle.h" />
     <ClInclude Include="leet_code\check_if_two_string_arrays_are_equivalent\check_if_two_string_arrays_are_equivalent.cpp" />
     <ClInclude Include="leet_code\check_if_two_string_arrays_are_equivalent\check_if_two_string_arrays_are_equivalent.h" />
     <ClInclude Include="leet_code\concatenation_of_array\concatenation_of_array.h" />
@@ -414,6 +422,7 @@
     <ClInclude Include="string\string.h" />
     <ClInclude Include="tests\big_integer\big_integer_tests.h" />
     <ClInclude Include="tests\complex\complex_tests.h" />
+    <ClInclude Include="tests\geometry\circle_tests.h" />
     <ClInclude Include="tests\string\string_tests.h" />
     <ClInclude Include="tests\vector\tests.h" />
     <ClInclude Include="vector\myvector.h" />
