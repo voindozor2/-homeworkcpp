@@ -1,18 +1,18 @@
 ﻿#pragma once
 #include "shape.h"
 
-class circle : public shape
+class rectangle : public shape
 {
 public:
-    double center;
-    double radius;
+    double length;
+    double width;
 
-    circle();
-    circle(circle& other);
-    circle(double center, double radius);
-    ~circle() override = default;
+    rectangle();
+    rectangle(rectangle& other);
+    rectangle(double width, double length);
+    ~rectangle() override = default;
 
-    circle& operator= (const circle& other);
+    rectangle& operator= (const rectangle& other);
     bool operator== (const shape& other) const override;
     bool operator!= (const shape& other) const override;
     bool operator> (const shape& other) const override;

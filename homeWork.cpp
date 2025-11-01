@@ -3,6 +3,7 @@
 #include "tests/big_integer/big_integer_tests.h"
 #include "tests/complex/complex_tests.h"
 #include "tests/geometry/circle_tests.h"
+#include "tests/geometry/rectangle_tests.h"
 
 int main(int argc, char* argv[])
 {
@@ -11,5 +12,6 @@ int main(int argc, char* argv[])
     run_big_integer_tests();
     run_complex_tests();
     run_circle_test();
+    run_rectangle_test();
     return 0;
 }
