@@ -47,7 +47,7 @@ void operator_not_equals_rectangle_test()
 void operator_more_rectangle_test()
 {
     rectangle rec_test(1, 2);
-    rectangle rec_test2(2, 2);
+    rectangle rec_test2(3, 4);
     bool equals = rec_test2 > rec_test;
     bool equals_expected = true;
     assert(equals == equals_expected);
@@ -55,7 +55,7 @@ void operator_more_rectangle_test()
 
 void operator_less_rectangle_test()
 {
-    rectangle rec_test(1, 2);
+    rectangle rec_test(3, 3);
     rectangle rec_test2(1, 1);
     bool less = rec_test < rec_test2;
     bool less_expected = true;
@@ -64,7 +64,7 @@ void operator_less_rectangle_test()
 
 void operator_more_equal_rectangle_test()
 {
-    rectangle rec_test(1, 2);
+    rectangle rec_test(1, 1);
     rectangle rec_test2(2, 2);
     bool more = rec_test2 >= rec_test;
     bool more_expected = true;

@@ -48,7 +48,7 @@ bool rectangle::operator>(const shape& other) const
     }
 
     const rectangle& casted = dynamic_cast<const rectangle&>(other);
-    return width > casted.width || length > casted.length;
+    return width > casted.width && length > casted.length;
 }
 
 bool rectangle::operator<(const shape& other) const

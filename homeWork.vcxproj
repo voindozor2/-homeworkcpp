@@ -318,6 +318,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="tests\geometry\triangle_tests.cpp" />
     <ClCompile Include="tests\string\string_tests.cpp" />
     <ClCompile Include="tests\vector\tests.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -500,6 +501,7 @@
     <ClInclude Include="tests\complex\complex_tests.h" />
     <ClInclude Include="tests\geometry\circle_tests.h" />
     <ClInclude Include="tests\geometry\rectangle_tests.h" />
+    <ClInclude Include="tests\geometry\triangle_tests.h" />
     <ClInclude Include="tests\string\string_tests.h" />
     <ClInclude Include="tests\vector\tests.h" />
     <ClInclude Include="vector\myvector.h" />

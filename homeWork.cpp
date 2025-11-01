@@ -4,6 +4,7 @@
 #include "tests/complex/complex_tests.h"
 #include "tests/geometry/circle_tests.h"
 #include "tests/geometry/rectangle_tests.h"
+#include "tests/geometry/triangle_tests.h"
 
 int main(int argc, char* argv[])
 {
@@ -13,5 +14,6 @@ int main(int argc, char* argv[])
     run_complex_tests();
     run_circle_test();
     run_rectangle_test();
+    run_triangle_test();
     return 0;
 }
