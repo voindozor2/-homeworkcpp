@@ -3,11 +3,11 @@
 
 class circle : public shape
 {
-public:
+private:
     int center_x;
     int center_y;
     int radius;
-
+public:
     circle();
     circle(circle& other);
     circle(double center_x, double center_y, double radius);
