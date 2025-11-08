@@ -105,7 +105,7 @@ bool complex::operator<(const complex& other) const
 
 bool complex::operator>(const complex& other) const
 {
-    return !(*this < other);
+    return !(*this <= other);
 }
 
 bool complex::operator<=(const complex& other) const

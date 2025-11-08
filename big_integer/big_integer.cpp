@@ -123,10 +123,6 @@ big_integer::~big_integer()
 
 big_integer::big_integer(const big_integer& other)
 {
-    if (this == &other)
-    {
-        return;
-    }
     sig = other.sig;
     bits_size = other.bits_size;
 
