@@ -3,25 +3,29 @@
 
 circle::circle()
 {
-    center = 0;
+    center_x = 0;
+    center_y = 0;
     radius = 0;
 }
 
 circle::circle(circle& other)
 {
-    center = other.center;
+    center_x = other.center_x;
+    center_y = other.center_y;
     radius = other.radius;
 }
 
-circle::circle(double center, double radius)
+circle::circle(double center_x, double center_y, double radius)
 {
-    this->center = center;
+    this->center_x = center_x;
+    this->center_y = center_y;
     this->radius = radius;
 }
 
 circle& circle::operator=(const circle& other)
 {
-    this->center = other.center;
+    this->center_x = other.center_x;
+    this->center_y = other.center_y;
     this->radius = other.radius;
     return *this;
 }
