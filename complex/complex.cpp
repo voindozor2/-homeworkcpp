@@ -24,36 +24,32 @@ complex::complex(const complex& other)
 
 complex complex::operator+(const complex& other)
 {
-    real = real + other.real;
-    imag = imag + other.imag;
-    return *this;
+    double realTemp = real + other.real;
+    double imagTemp = imag + other.imag;
+    return complex(realTemp, imagTemp);
 }
 
 complex complex::operator-(const complex& other)
 {
-    real = real - other.real;
-    imag = imag - other.imag;
-    return *this;
+    double realTemp = real - other.real;
+    double imagTemp = imag - other.imag;
+    return complex(realTemp, imagTemp);
 }
 
 complex complex::operator*(const complex& other)
 {
-    double new_real = real * other.real - imag * other.imag;
-    double new_imag = real * other.imag + imag * other.real;
-    real = new_real;
-    imag = new_imag;
-    return *this;
+    double realTemp = real * other.real - imag * other.imag;
+    double imagTemp = real * other.imag + imag * other.real;
+    return complex(realTemp, imagTemp);
 }
 
 complex complex::operator/(const complex& other)
 {
     double denominator = other.real * other.real + other.imag * other.imag; // c² + d²
 
-    double new_real = (real * other.real + imag * other.imag) / denominator;
-    double new_imag = (imag * other.real - real * other.imag) / denominator;
-    real = new_real;
-    imag = new_imag;
-    return *this;
+    double realTemp = (real * other.real + imag * other.imag) / denominator;
+    double imagTemp = (imag * other.real - real * other.imag) / denominator;
+    return complex(realTemp, imagTemp);
 }
 
 complex& complex::operator+=(const complex& other)

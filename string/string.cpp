@@ -62,7 +62,20 @@ const size_t string::size() const
     return length;
 }
 
-string& string::operator+(const string& other)
+string string::operator+(const string& other)
+{
+    string temp(*this);
+    temp += other;
+    return temp;
+}
+
+string string::operator+(const char& ch)
+{
+    string temp(*this);
+    return temp += ch;
+}
+
+string& string::operator+=(const string& other)
 {
     if (size() + other.size() > max_size)
     {
@@ -76,7 +89,7 @@ string& string::operator+(const string& other)
     return *this;
 }
 
-string& string::operator+(const char& ch)
+string& string::operator+=(const char& ch)
 {
     if (length + 1 == max_size)
     {

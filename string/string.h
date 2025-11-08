@@ -18,8 +18,10 @@ public:
     string(const char* chars, int size);
     ~string();
     const size_t size() const;
-    string& operator+(const string& other);
-    string& operator+(const char&);
+    string operator+(const string& other);
+    string operator+(const char&);
+    string& operator+=(const string& other);
+    string& operator+=(const char&);
     string& operator=(const string& other);
     bool operator==(const string& other) const;
     bool operator!=(const string& other) const;

@@ -143,6 +143,8 @@ big_integer& big_integer::operator=(const big_integer& other)
     {
         return *this;
     }
+    delete[] bytes;
+    
     sig = other.sig;
     bits_size = other.bits_size;
     bytes = new unsigned char[bits_size]();
@@ -155,14 +157,23 @@ big_integer& big_integer::operator=(const big_integer& other)
 
 big_integer& big_integer::operator+=(const big_integer& other)
 {
-    *this = *this + other;
+    if (bits_size < other.bits_size) {
+        unsigned char* grown = new unsigned char[other.bits_size]();
+        size_t shift = other.bits_size - bits_size;
+        for (size_t i = 0; i < bits_size; ++i)
+            grown[shift + i] = bytes[i];
+        delete[] bytes;
+        bytes = grown;
+        bits_size = other.bits_size;
+    }
+    plus(bytes, other.bytes, bits_size, other.bits_size);
     return *this;
 }
 
 big_integer& big_integer::operator+=(const int other)
 {
     big_integer integer(other);
-    *this = *this + integer;
+    *this +=integer;
     return *this;
 }
 
@@ -201,29 +212,25 @@ big_integer big_integer::operator--(int) // a--
 
 big_integer big_integer::operator+(const big_integer& other)
 {
-    if (bits_size > other.bits_size)
-    {
-        bytes = plus(bytes, other.bytes, bits_size, other.bits_size);
-    }
-    else
-    {
-        bytes = plus(other.bytes, bytes, other.bits_size, bits_size);
-    }
-    return *this;
+    big_integer temp(*this);
+    temp += other;
+    return temp;
 }
 
 big_integer big_integer::operator+(const int other)
 {
     big_integer other_big_int(other);
-    *this = *this + other_big_int;
-    return *this;
+    big_integer temp (*this);
+    temp += other_big_int;
+    return temp;
 }
 
 big_integer big_integer::operator-(const big_integer& other)
 {
-    bytes = minus(bytes, other.bytes, bits_size, other.bits_size, sig, other.sig);
-    sig = sig || other.sig;
-    return *this;
+    big_integer temp(*this); // у temp свой буфер
+    minus(temp.bytes, other.bytes, temp.bits_size, other.bits_size, temp.sig, other.sig);
+    temp.sig = sig || other.sig;
+    return temp;
 }
 
 big_integer big_integer::operator-(const int other)
