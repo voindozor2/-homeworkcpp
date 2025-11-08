@@ -24,4 +24,8 @@ public:
     double calculate_area() const override;
     double calculate_perimeter() const override;
     std::string get_type() const override;
+
+    int get_center_x() const;
+    int get_center_y() const;
+    int get_radius() const;
 };

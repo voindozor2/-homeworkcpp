@@ -10,9 +10,9 @@ void copy_constructor_circle_test()
     circle circ_test(1,1,1);
     circle circ_test2(circ_test);
 
-    assert(circ_test2.radius == 1.0);
-    assert(circ_test2.center_x == 1.0);
-    assert(circ_test2.center_y == 1.0);
+    assert(circ_test2.get_radius() == 1.0);
+    assert(circ_test2.get_center_x() == 1.0);
+    assert(circ_test2.get_center_y() == 1.0);
 }
 
 void constructor_circle_test()
@@ -22,9 +22,9 @@ void constructor_circle_test()
     bool isCircle = circ_test.get_type() == "circle";
 
     assert(isCircle);
-    assert(circ_test.radius == 1.0);
-    assert(circ_test.center_x == 1.0);
-    assert(circ_test.center_y == 1.0);
+    assert(circ_test.get_radius() == 1.0);
+    assert(circ_test.get_center_x() == 1.0);
+    assert(circ_test.get_center_y() == 1.0);
 }
 
 void operator_equal_circle_test()
@@ -33,9 +33,9 @@ void operator_equal_circle_test()
     circle circ_test2(2,2,2);
     circ_test = circ_test2;
     
-    assert(circ_test.radius == 2);
-    assert(circ_test.center_x == 2);
-    assert(circ_test.center_y == 2);
+    assert(circ_test.get_radius() == 2);
+    assert(circ_test.get_center_x() == 2);
+    assert(circ_test.get_center_y() == 2);
 }
 
 void operator_equals_circle_test()

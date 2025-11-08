@@ -1,10 +1,10 @@
 ﻿#include "tests.h"
-#include "../../vector/myvector.h"
+#include "../../vector/myvector.hpp"
 #include <cassert>
 
 void push_ten_elements_max_size_is_not_twenty_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     for (int i = 0; i < 10; i++)
     {
         test_vector.push_to_tail(i);
@@ -17,7 +17,7 @@ void push_ten_elements_max_size_is_not_twenty_test()
 
 void push_eleven_elements_max_size_is_twenty_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     for (int i = 0; i < 11; i++)
     {
         test_vector.push_to_tail(i);
@@ -30,7 +30,7 @@ void push_eleven_elements_max_size_is_twenty_test()
 
 void push_to_tail_int_sequence_is_equals_to_expected_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     test_vector.push_to_tail(1);
     test_vector.push_to_tail(2);
     test_vector.push_to_tail(3);
@@ -39,7 +39,7 @@ void push_to_tail_int_sequence_is_equals_to_expected_test()
 
     int expectedArray[] = {1, 2, 3, 4, 5};
     int size = std::size(expectedArray);
-    vector expected(expectedArray, size);
+    vector<int> expected(expectedArray, size);
     assert(test_vector == expected);
     std::cout << "push_to_tail_int_sequence_is_equals_to_expected_test is OK" <<
         std::endl;
@@ -47,7 +47,7 @@ void push_to_tail_int_sequence_is_equals_to_expected_test()
 
 void push_int_sequence_and_delete_three_elements_from_back_is_equals_to_expected_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     test_vector.push_to_tail(1);
     test_vector.push_to_tail(2);
     test_vector.push_to_tail(3);
@@ -60,7 +60,7 @@ void push_int_sequence_and_delete_three_elements_from_back_is_equals_to_expected
 
     int expectedArray[] = {1, 2};
     int size = std::size(expectedArray);
-    vector expected(expectedArray, size);
+    vector<int> expected(expectedArray, size);
     assert(test_vector == expected);
     std::cout <<
         "push_int_sequence_and_delete_three_elements_from_back_is_equals_to_expected_test is OK"
@@ -69,14 +69,14 @@ void push_int_sequence_and_delete_three_elements_from_back_is_equals_to_expected
 
 void operator_is_equal_to_another_container_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     test_vector.push_to_tail(1);
     test_vector.push_to_tail(2);
     test_vector.push_to_tail(3);
     test_vector.push_to_tail(4);
     test_vector.push_to_tail(5);
 
-    vector test_vector2(5);
+    vector<int> test_vector2(5);
 
     test_vector2 = test_vector;
     assert(test_vector == test_vector2);
@@ -86,7 +86,7 @@ void operator_is_equal_to_another_container_test()
 
 void when_push_to_index_equal_to_expected_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     test_vector.push_to_tail(1);
     test_vector.push_to_tail(2);
     test_vector.push_to_tail(3);
@@ -98,14 +98,14 @@ void when_push_to_index_equal_to_expected_test()
 
     int expectedArray[] = {1, 222, 2, 333, 3, 4, 5};
     int size = std::size(expectedArray);
-    vector expected(expectedArray, size);
+    vector<int> expected(expectedArray, size);
     assert(test_vector == expected);
     std::cout << "when_push_to_index_equal_to_expected_test is OK" << std::endl;
 }
 
 void delete_from_index_equal_to_expected_test()
 {
-    vector test_vector(5);
+    vector<int> test_vector(5);
     test_vector.push_to_tail(1);
     test_vector.push_to_tail(2);
     test_vector.push_to_tail(3);
@@ -117,7 +117,7 @@ void delete_from_index_equal_to_expected_test()
 
     int expectedArray[] = {1, 3, 4};
     int size = std::size(expectedArray);
-    vector expected(expectedArray, size);
+    vector<int> expected(expectedArray, size);
     assert(test_vector == expected);
     std::cout << "delete_from_index_equal_to_expected_test is OK" << std::endl;
 }
@@ -125,7 +125,7 @@ void delete_from_index_equal_to_expected_test()
 void constructor_initialize_test()
 {
     int init_size = 5;
-    vector test_vector(init_size);
+    vector<int> test_vector(init_size);
     assert(init_size * test_vector.get_coef() == test_vector.get_max_size());
     std::cout << "constructor_initialize_test is OK" << std::endl;
 }
@@ -133,12 +133,12 @@ void constructor_initialize_test()
 void operator_compare_test()
 {
     int init_array[] = {1, 2, 3, 4, 5};
-    vector test_vector(init_array, 5);
-    vector test_vector2(init_array, 5);
+    vector<int> test_vector(init_array, 5);
+    vector<int> test_vector2(init_array, 5);
     
     bool equals_expected = false;
 
-    for (int i = 0; i < test_vector.size(); ++i)
+    for (size_t i = 0; i < test_vector.size(); ++i)
     {
         if (test_vector.at(i) == test_vector2.at(i))
         {
@@ -156,8 +156,8 @@ void operator_compare_test()
 void constructor_copy_test()
 {
     int init_array[] = {1, 2, 3, 4, 5};
-    vector test_vector(init_array, 5);
-    vector test_vector2(test_vector);
+    vector<int> test_vector(init_array, 5);
+    vector<int> test_vector2(test_vector);
     assert(test_vector == test_vector2);
     std::cout << "constructor_copy_test is OK" << std::endl;
 }
@@ -166,7 +166,7 @@ void constructor_with_sequence_test()
 {
     int init_array[] = {1, 2, 3, 4, 5};
     int size = 5;
-    vector test_vector(init_array, size);
+    vector<int> test_vector(init_array, size);
     const int coef = test_vector.get_coef();
     assert(size * coef == test_vector.get_max_size());
 
@@ -180,7 +180,7 @@ void constructor_with_sequence_test()
 void operator_brackets_test()
 {
     int init_array[] = {1, 2, 3, 4, 5};
-    vector test_vector(init_array, 5);
+    vector<int> test_vector(init_array, 5);
 
     assert(test_vector[1] == init_array[1]);
 

@@ -91,3 +91,18 @@ std::string circle::get_type() const
 {
     return "circle";
 }
+
+int circle::get_center_x() const
+{
+    return center_x;
+}
+
+int circle::get_center_y() const
+{
+    return center_y;
+}
+
+int circle::get_radius() const
+{
+    return radius;
+}
