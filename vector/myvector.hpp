@@ -12,10 +12,10 @@ private:
 public:
     vector();
 
-    vector(T arr[],int size);
+    vector(T arr[], int size);
 
     vector(int initialSize);
-    
+
     vector(const vector& source);
 
     ~vector();
@@ -33,7 +33,7 @@ public:
     void shift_array_from_index_reverse(int numberOfElements, int index);
 
     void allocate_new_array();
-    
+
     void push_to_tail(int value);
 
     void delete_back();
@@ -58,43 +58,71 @@ public:
 template <typename T>
 vector<T>::vector()
 {
-    max_size = 10;
-    head = new T[max_size];
-    tail = head;
+    try
+    {
+        max_size = 10;
+        head = new T[max_size];
+        tail = head;
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 }
 
 template <typename T>
 vector<T>::vector(T arr[], int size)
 {
-    max_size = size * coef;
-    head = new T[max_size];
-    tail = head;
-
-    for (int i = 0; i < size; i++)
+    try
     {
-        head[i] = arr[i];
-        tail++;
+        max_size = size * coef;
+        head = new T[max_size];
+        tail = head;
+
+        for (int i = 0; i < size; i++)
+        {
+            head[i] = arr[i];
+            tail++;
+        }
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
     }
 }
 
 template <typename T>
 vector<T>::vector(int initialSize)
 {
-    max_size = initialSize * coef;
-    head = new T[max_size];
-    tail = head;
+    try
+    {
+        max_size = initialSize * coef;
+        head = new T[max_size];
+        tail = head;
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 }
 
 template <typename T>
 vector<T>::vector(const vector& source)
 {
-    max_size = source.max_size;
-    head = new T[max_size];
-    tail = head;
-
-    for (int i = 0; i < source.size(); i++)
+    try
     {
-        push_to_tail(source.at(i));
+        max_size = source.max_size;
+        head = new T[max_size];
+        tail = head;
+
+        for (int i = 0; i < source.size(); i++)
+        {
+            push_to_tail(source.at(i));
+        }
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
     }
 }
 
@@ -172,18 +200,25 @@ void vector<T>::shift_array_from_index_reverse(int numberOfElements, int index)
 template <typename T>
 void vector<T>::allocate_new_array()
 {
-    T* new_head = new T[max_size * coef];
-    T* new_tail = new_head + size();
-
-    for (int i = 0; i < size(); i++)
+    try
     {
-        new_head[i] = head[i];
-    }
+        T* new_head = new T[max_size * coef];
+        T* new_tail = new_head + size();
 
-    max_size = max_size * coef;
-    delete[] head;
-    head = new_head;
-    tail = new_tail;
+        for (int i = 0; i < size(); i++)
+        {
+            new_head[i] = head[i];
+        }
+
+        max_size = max_size * coef;
+        delete[] head;
+        head = new_head;
+        tail = new_tail;
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 }
 
 template <typename T>
@@ -232,6 +267,10 @@ int vector<T>::pop_from_tail()
 template <typename T>
 void vector<T>::push_to_index(int index, int value)
 {
+    if (index < 0 || index > size())
+    {
+        throw std::out_of_range("vector index out of range");
+    }
     shift_array_from_index(1, index);
     head[index] = value;
 }
@@ -239,6 +278,10 @@ void vector<T>::push_to_index(int index, int value)
 template <typename T>
 int vector<T>::pop_from_index(int index)
 {
+    if (index < 0 || index >= size())
+    {
+        throw std::out_of_range("vector index out of range");
+    }
     int result = head[index];
     shift_array_from_index_reverse(1, index);
     return result;
@@ -253,6 +296,10 @@ const int vector<T>::get_max_size() const
 template <typename T>
 int vector<T>::at(int index) const
 {
+    if (index < 0 || index >= size())
+    {
+        throw std::out_of_range("vector index out of range");
+    }
     return head[index];
 }
 
