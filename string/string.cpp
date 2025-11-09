@@ -1,54 +1,90 @@
 ﻿#include "string.h"
 
+#include <iostream>
 #include <istream>
 #include <ostream>
 
 void string::allocate(int indexes)
 {
-    max_size = indexes * coef > max_size * coef ? indexes * coef : max_size * coef;
-    char* new_head = new char[max_size]();
-    for (size_t i = 0; i < size(); i++)
+    try
     {
-        new_head[i] = head[i];
+        max_size = indexes * coef > max_size * coef ? indexes * coef : max_size * coef;
+        char* new_head = new char[max_size]();
+        for (size_t i = 0; i < size(); i++)
+        {
+            new_head[i] = head[i];
+        }
+        delete[] head;
+        head = new_head;
     }
-    delete[] head;
-    head = new_head;
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 }
 
 string::string()
 {
-    int initial_size = 5;
-    max_size = (initial_size == 0) ? 1 : initial_size * coef;
-    head = new char[max_size](); //Инициализация нулями!
-    length = 0;
+    try
+    {
+        int initial_size = 5;
+        max_size = (initial_size == 0) ? 1 : initial_size * coef;
+        head = new char[max_size](); //Инициализация нулями!
+        length = 0;
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 }
 
 string::string(int initial_size)
 {
-    max_size = (initial_size == 0) ? 1 : initial_size * coef;
-    head = new char[max_size](); //Инициализация нулями!
-    length = 0;
+    try
+    {
+        max_size = (initial_size == 0) ? 1 : initial_size * coef;
+        head = new char[max_size](); //Инициализация нулями!
+        length = 0;
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 }
 
 string::string(const string& other)
 {
-    max_size = other.max_size;
-    head = new char[max_size](); //Инициализация нулями!
-    length = other.length;
-    for (int i = 0; i < size(); i++)
+    try
     {
-        head[i] = other.head[i];
+        max_size = other.max_size;
+        head = new char[max_size](); //Инициализация нулями!
+        length = other.length;
+        for (int i = 0; i < size(); i++)
+        {
+            head[i] = other.head[i];
+        }
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
     }
 }
 
 string::string(const char* chars, int initial_size)
 {
-    head = new char[initial_size](); //Инициализация нулями!
-    max_size = (initial_size == 0) ? 1 : initial_size * coef;
-    length = initial_size;
-    for (size_t i = 0; i < length; i++)
+    try
     {
-        head[i] = chars[i];
+        head = new char[initial_size](); //Инициализация нулями!
+        max_size = (initial_size == 0) ? 1 : initial_size * coef;
+        length = initial_size;
+        for (size_t i = 0; i < length; i++)
+        {
+            head[i] = chars[i];
+        }
+    }
+    catch (std::bad_alloc& ex)
+    {
+        std::cout << ex.what() << std::endl;
     }
 }
 
@@ -102,17 +138,24 @@ string& string::operator+=(const char& ch)
 
 string& string::operator=(const string& other)
 {
-    if (this == &other)
+    try
     {
-        return *this;
+        if (this == &other)
+        {
+            return *this;
+        }
+        delete [] head;
+        max_size = other.max_size;
+        head = new char[max_size]();
+        length = other.size();
+        for (size_t i = 0; i < other.size(); i++)
+        {
+            head[i] = other.head[i];
+        }
     }
-    delete [] head;
-    max_size = other.max_size;
-    head = new char[max_size]();
-    length = other.size();
-    for (size_t i = 0; i < other.size(); i++)
+    catch (std::bad_alloc& ex)
     {
-        head[i] = other.head[i];
+        std::cout << ex.what() << std::endl;
     }
     return *this;
 }
@@ -142,6 +185,10 @@ bool string::operator!=(const string& other) const
 
 char string::operator[](int index) const
 {
+    if (index < 0 || index >= size())
+    {
+        throw std::out_of_range("vector index out of range");
+    }
     return head[index];
 }
 
