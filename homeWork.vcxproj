@@ -428,6 +428,7 @@
     <ClInclude Include="tests\string\string_tests.h" />
     <ClInclude Include="tests\vector\tests.h" />
     <ClInclude Include="vector\myvector.hpp" />
+    <ClInclude Include="vector\RandomAccessIterator.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

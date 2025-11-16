@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 
+#include "RandomAccessIterator.hpp"
+
 template <typename T>
 class vector
 {
@@ -53,6 +55,9 @@ public:
     int at(int index) const;
 
     int get_coef() const;
+
+    VectorIterator<T> begin();
+    VectorIterator<T> end();
 };
 
 template <typename T>
@@ -307,4 +312,16 @@ template <typename T>
 int vector<T>::get_coef() const
 {
     return coef;
+}
+
+template <typename T>
+VectorIterator<T> vector<T>::begin()
+{
+    return VectorIterator<T>(head);
+}
+
+template <typename T>
+VectorIterator<T> vector<T>::end()
+{
+    return VectorIterator<T>(tail);
 }
